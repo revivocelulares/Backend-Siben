@@ -13,13 +13,12 @@ const getCart = async (info) => {
     }
 };
 
-const updateCart = async (info, id) => {
+const updateCart = async (info, ClientEmail) => {
     try {
-        console.log(info);
         const updatedCart = await Cart.update({
             cart_items: info
         },
-            { where: { ClientEmail: id } 
+            { where: { ClientEmail: ClientEmail } 
         });
         return updatedCart;
     } catch (error) {
@@ -27,12 +26,12 @@ const updateCart = async (info, id) => {
     }
 };
 
-const deleteCart = async (id) => {
+const deleteCart = async (info) => {
     try {
-        console.log(info);
         const deletedCart = await Cart.destroy(
-            { where: { ClientEmial: id } 
+            { where: { ClientEmail: info } 
         });
+        return deletedCart;
     } catch (error) {
         console.log(error);
     }
