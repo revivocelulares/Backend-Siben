@@ -62,7 +62,7 @@ const client = {
     },
     verify: async (req, res) => {
         try {
-            const { token } = req.query;
+            const token = req.params['token'];
             const client = await Client.findOne({
               where: { token: token }
             });
@@ -104,7 +104,7 @@ const client = {
     },
     getClientbyID: async (req, res) => {
         try {
-            const id = req.params.email;
+            const id = req.params['email'];
             const getclientid = await Client.findOne({
                 where: { email: id }
             });
@@ -127,7 +127,7 @@ const client = {
                 res.status(403).send({message:"Forbidden Access"});
             } else {
                 try {
-                    const id = req.params.email;
+                    const id = req.params['email'];
                     const info = req.body;
                     const updatedclient = await Client.update(info, {
                         where: { email: id }
@@ -145,7 +145,7 @@ const client = {
                 res.status(403).send({message:"Forbidden Access"});
             } else {
                 try {
-                    const id = req.params.email;
+                    const id = req.params['email'];
                     const deletedclient = await Client.destroy({
                         where: { email: id }
                     });
@@ -158,9 +158,7 @@ const client = {
     },
     getClientByemail_pass: async (req, res) => {
         try {
-            const email = req.query.email;
-            const login_password = req.query.login_password;
-
+            const { email, login_password } = req.query;
             if((email === req.query.email && email !== '') && (login_password === req.query.login_password && login_password !== '')) {
                 const encontrado = await Client.findOne({
                     where: {
@@ -170,7 +168,7 @@ const client = {
                 });
                 res.status(200).json(encontrado);
             } else {
-                res.send("Cliente no encontrado");        
+                res.json({mensaje: "Cliente no encontrado"});        
             }
         } catch (error) {
             console.log('Error: ' + error);

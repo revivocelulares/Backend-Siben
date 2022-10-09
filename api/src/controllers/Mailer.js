@@ -6,10 +6,10 @@ const path = require('path');
 async function mailer(info) {
     try {
         let transporter = nodemailer.createTransport({
-            service: 'alguno',
+            service: 'gmail',
             auth: {
-                user: " ",
-                pass: " "
+                user: "revivocelulares@gmail.com",
+                pass: "Diego581466"
             },
         });
         let filePath = "";
@@ -51,7 +51,7 @@ async function mailer(info) {
                 break;
         }
         let options = await transporter.sendMail({
-            from: " ", //sender address
+            from: "revivocelulares@gmail.com", //sender address
             to: user,
             subject: subject,
             html: template({ url })
