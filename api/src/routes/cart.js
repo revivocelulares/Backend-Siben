@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const router = Router();
 
-router.put('/:id', verify_client_token, async(req,res)=>{
+router.put('/:id', verify_client_token, async(req, res) => {
   console.log(req.token);
   jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
     if(error){
@@ -27,7 +27,7 @@ router.put('/:id', verify_client_token, async(req,res)=>{
 
 });
 
-router.get('/:id', verify_client_token, async(req,res)=>{
+router.get('/:id', verify_client_token, async(req, res) => {
   jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
     if(error){
       res.status(403).send({message:"Forbidden Access"});
@@ -46,7 +46,7 @@ router.get('/:id', verify_client_token, async(req,res)=>{
   })
 });
 
-router.delete('/:id', verify_client_token, async(req,res)=>{
+router.delete('/:id', verify_client_token, async(req, res) => {
   jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
     if(error){
       res.status(403).send({message:"Forbidden Access"});
