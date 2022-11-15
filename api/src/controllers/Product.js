@@ -103,9 +103,9 @@ const product = {
     },
     getProductByAuthor: async (req, res) => {
         try {
-            const autor = req.params['authors'];
+            const { authors } = req.body;
             const getProductByAutor = await Product.findOne({
-                where: { authors: autor }
+                where: { authors: authors }
             });
             res.status(200).json(getProductByAutor).send('Producto Encontrado');
         } catch (error) {
