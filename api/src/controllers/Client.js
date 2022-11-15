@@ -12,19 +12,19 @@ const client = {
             const createdClient = await Client.findOrCreate({
                 where: { email: email },
                 defaults: {
-                email,
-                login_password,
-                name,
-                lastname,
-                country,
-                isRegistered: email ? true : false,
-                isMember,
-                profession,
-                resident,
-                ip_address,
-                long,
-                lat,
-                token
+                    email,
+                    login_password,
+                    name,
+                    lastname,
+                    country,
+                    isRegistered: email ? true : false,
+                    isMember,
+                    profession,
+                    resident,
+                    ip_address,
+                    long,
+                    lat,
+                    token
                 }
             });
 
