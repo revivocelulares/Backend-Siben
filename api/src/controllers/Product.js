@@ -82,6 +82,36 @@ const product = {
             }
         });
     },
+    getProductByID: async (req, res) => {
+        try {
+            const id = req.params['id_product'];
+            const getproductid = await Product.findOne({
+                where: { id_product: id }
+            });
+            res.status(200).json(getproductid).send('Producto Encontrado');
+        } catch (error) {
+            console.log('Error: ' + error);
+        }
+    },
+    getAllProducts: async (req, res) => {
+        try {
+            const getProducts = await Product.findAll();
+            res.status(200).json(getProducts);
+        } catch (error) {
+            console.log('Error: ' + error);
+        }
+    },
+    getProductByAuthor: async (req, res) => {
+        try {
+            const autor = req.params['authors'];
+            const getProductByAutor = await Product.findMany({
+                where: { authors: autor }
+            });
+            res.status(200).json(getProductByAutor).send('Producto Encontrado');
+        } catch (error) {
+            console.log('Error: ' + error);
+        }
+    }
 };
 
 module.exports = product;
