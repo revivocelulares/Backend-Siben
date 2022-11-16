@@ -8,6 +8,6 @@ route.patch("/delete/:id_product", verify_admin_token, deleteProduct);
 route.delete("/:id_product", verify_admin_token, hard_deleteProduct);
 route.get("/", getAllProducts);
 route.get("/:id_product", getProductByID);
-route.get("/:authors", getProductByAuthor);
+route.get("/authors", getProductByAuthor);
 
 module.exports = route;
