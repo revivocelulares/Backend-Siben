@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const { Product } = require('../db.js');
+const mysql = require('mysql2/promise');
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
 const product = {
     addProduct: async (req, res) => {
@@ -88,7 +90,7 @@ const product = {
             const getproductid = await Product.findOne({
                 where: { id_product: id }
             });
-            res.status(200).json(getproductid).send('Producto Encontrado');
+            res.status(200).json(getproductid);
         } catch (error) {
             console.log('Error: ' + error);
         }
@@ -101,17 +103,6 @@ const product = {
             console.log('Error: ' + error);
         }
     },
-    getProductByAuthor: async (req, res) => {
-        try {
-            const { authors } = req.body;
-            const getProductByAutor = await Product.findOne({
-                where: { authors: authors }
-            });
-            res.status(200).json(getProductByAutor).send('Producto Encontrado');
-        } catch (error) {
-            console.log('Error: ' + error);
-        }
-    }
 };
 
 module.exports = product;
