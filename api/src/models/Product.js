@@ -43,7 +43,7 @@ module.exports = (sequelize) => {
             defaultValue: false
         },
         image: {
-            type: DataTypes.BLOB(),
+            type: DataTypes.STRING(),
             allowNull: true
         },
         format: {

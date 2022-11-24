@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const { Product } = require('../db.js');
-const mysql = require('mysql2/promise');
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
+const { readFileSync } = require('fs');
 
 const product = {
     addProduct: async (req, res) => {
@@ -12,6 +12,8 @@ const product = {
             } else {
                 try {
                     const { title, authors, isbn, prolog, description, price_usd, price_ars, image, format } = req.body;
+                    let buff = readFileSync(`./${title}.jpg`);
+                    image = buff.toString('base64');
                     let newProduct = await Product.create({
                         title, 
                         authors, 
@@ -103,6 +105,24 @@ const product = {
             console.log('Error: ' + error);
         }
     },
+    uploadCaratula: async (req, res) => {
+        jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
+            if(error) {
+                res.status(403).send({message:"Forbidden Access"});
+            } else {
+                try {
+                    let upfile = req.files.file;
+                    upfile.mv(`./tapa-libros/${upfile.name}`, err => {
+                        if(err) return res.status(500).send({ message : err });
+
+                        return res.status(200).send({ message : 'File upload', authData });
+                    })
+                } catch (error) {
+                    console.log('Error: ' + error);
+                }
+            }
+        });
+    }
 };
 
 module.exports = product;

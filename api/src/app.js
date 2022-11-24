@@ -1,6 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
+const fileUpload = require('express-fileupload');
 const routes = require('./routes/index.js');
 require('dotenv').config();
 require('./db.js');
@@ -11,6 +12,7 @@ server.name = 'BACKEND SIBEN';
 
 server.use(express.json());
 server.use(cookieParser());
+server.use(fileUpload());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
