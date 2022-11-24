@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const { Product } = require('../db.js');
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
-const { readFileSync } = require('fs');
+let fs = require('fs');
 
 const product = {
     addProduct: async (req, res) => {
@@ -11,8 +11,8 @@ const product = {
                 res.status(403).send({message:"Forbidden Access"});
             } else {
                 try {
-                    const { title, authors, isbn, prolog, description, price_usd, price_ars, image, format } = req.body;
-                    let buff = readFileSync(`./${title}.jpg`);
+                    let { title, authors, isbn, prolog, description, price_usd, price_ars, image, format } = req.body;
+                    let buff = fs.readFileSync(`./src/tapa-libros/${title}.jpg`);
                     image = buff.toString('base64');
                     let newProduct = await Product.create({
                         title, 
