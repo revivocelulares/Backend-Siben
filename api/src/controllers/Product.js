@@ -112,7 +112,8 @@ const product = {
             } else {
                 try {
                     let upfile = req.files.file;
-                    upfile.mv(`./tapa-libros/${upfile.name}`, err => {
+                    console.log('file: ' + upfile.name);
+                    upfile.mv(`./src/tapa-libros/${upfile.name}`, err => {
                         if(err) return res.status(500).send({ message : err });
 
                         return res.status(200).send({ message : 'File upload', authData });
