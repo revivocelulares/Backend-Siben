@@ -54,6 +54,7 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 const {
+    Authors,
     Client,
     Product,
     Users,
@@ -69,6 +70,9 @@ Client.hasMany(PurchaseOrder);
 PurchaseOrder.belongsTo(Client);
 PurchaseOrder.hasOne(Invoice);
 Invoice.belongsTo(PurchaseOrder);
+
+Product.belongsToMany(Authors, { through: 'Product_Authors'});
+Authors.belongsToMany(Product, { through: 'Product_Authors'});
 
 module.exports = {
   ...sequelize.models,

@@ -13,10 +13,6 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING(),
             allowNull: false,
         },
-        authors: {
-            type: DataTypes.STRING(),
-            allowNull: false
-        },
         isbn: {
             type: DataTypes.STRING(),
             allowNull: false,

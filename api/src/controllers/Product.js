@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const { Product } = require('../db.js');
+const { Product, Authors } = require('../db.js');
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 let fs = require('fs');
 
@@ -11,7 +11,7 @@ const product = {
                 res.status(403).send({message:"Forbidden Access"});
             } else {
                 try {
-                    let { title, authors, isbn, prolog, description, price_usd, price_ars, image, format } = req.body;
+                    let { title, authors, isbn, prolog, description, price_usd, price_ars, image, format, autores } = req.body;
                     let buff = fs.readFileSync(`./src/tapa-libros/${title}.jpg`);
                     image = buff.toString('base64');
                     let newProduct = await Product.create({
@@ -25,6 +25,12 @@ const product = {
                         image, 
                         format
                     });
+                    Promise.all(autores.map(async author => {
+                        const autor_DB = await Authors.findAll({
+                            where: { name: author }
+                        })
+                        newProduct.addAuthors(autor_DB);
+                    }))
                     res.status(200).json({newProduct, message:"Authorized Access", authData});
                 } catch (error) {
                     console.log('Error: ' + error);
