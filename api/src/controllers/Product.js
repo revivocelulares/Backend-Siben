@@ -95,7 +95,13 @@ const product = {
         try {
             const id = req.params['id_product'];
             const getproductid = await Product.findOne({
-                where: { id_product: id }
+                where: { id_product: id, sdelete: false },
+                include: [{
+                    model: Authors,
+                    through: {
+                        attributes: []
+                    }
+                }]
             });
             res.status(200).json(getproductid);
         } catch (error) {
@@ -104,7 +110,15 @@ const product = {
     },
     getAllProducts: async (req, res) => {
         try {
-            const getProducts = await Product.findAll();
+            const getProducts = await Product.findAll({
+                where: { sdelete: false },
+                include: [{
+                    model: Authors,
+                    through: {
+                        attributes: []
+                    }
+                }]
+            });
             res.status(200).json(getProducts);
         } catch (error) {
             console.log('Error: ' + error);
@@ -128,6 +142,26 @@ const product = {
                 }
             }
         });
+    },
+    getProductByAuthor: async (req, res) => {
+        try {
+            const author_name = req.params['name'];
+            const bookfounded = await Authors.findAll({
+                where: { name: author_name },
+                include: [{
+                    model: Product,
+                    where: {
+                        sdelete: false
+                    },
+                    through: {
+                        attributes: []
+                    }
+                }]
+            })
+            res.status(200).json(bookfounded);
+        } catch (error) {
+            console.log('Error: ' + error);
+        }
     }
 };
 
