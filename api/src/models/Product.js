@@ -18,11 +18,11 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         prolog: {
-            type: DataTypes.STRING(),
+            type: DataTypes.TEXT('long'),
             allowNull: false,
         },
         description: {
-            type: DataTypes.STRING(),
+            type: DataTypes.TEXT('long'),
             allowNull: false,
         },
         price_usd: {
