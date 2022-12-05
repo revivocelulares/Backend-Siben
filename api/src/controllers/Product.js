@@ -176,7 +176,7 @@ const product = {
                 }]
             });
             if (type === 'ASC') {
-                data.sort(function (a, b){
+                data.sort(function (a, b) {
                     if (a.price_ars > b.price_ars) {
                         return 1;
                     }
