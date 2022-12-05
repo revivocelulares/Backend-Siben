@@ -162,6 +162,47 @@ const product = {
         } catch (error) {
             console.log('Error: ' + error);
         }
+    },
+    getbyPrice: async (req, res) => {
+        try {
+            const type = req.params['type'];
+            let data = await Product.findAll({
+                where: { sdelete: false },
+                include: [{
+                    model: Authors,
+                    through: {
+                        attributes: []
+                    }
+                }]
+            });
+            if (type === 'ASC') {
+                data.sort(function (a, b){
+                    if (a.price_ars > b.price_ars) {
+                        return 1;
+                    }
+                    if (a.price_ars < b.price_ars) {
+                        return -1;
+                    }
+                    return 0;
+                });
+                return res.status(200).json(data);
+            } else if (type === 'DESC') {
+                data.sort(function (a, b) {
+                    if (a.price_ars < b.price_ars) {
+                        return 1;
+                    }
+                    if (a.price_ars > b.price_ars) {
+                        return -1;
+                    }
+                    return 0;
+                });
+                return res.status(200).json(data);
+            } else {
+                return res.status(200).json(data);
+            }
+        } catch (error) {
+            console.log('Error: ' + error);
+        }
     }
 };
 
