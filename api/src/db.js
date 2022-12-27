@@ -9,7 +9,7 @@ const sequelize = process.env.NODE_ENV === 'production'
         database: DB_NAME,
 		dialect: 'mysql',
 		host: DB_HOST,
-		port: 7247,
+		port: 3306,
 		username: DB_USER,
 		password: DB_PASSWORD,
 		pool: {

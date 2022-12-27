@@ -16,6 +16,7 @@ server.use(cookieParser());
 server.use(fileUpload());
 server.use(morgan('dev'));
 server.use(corss());
+server.use('/api/tapa-libros', express.static(__dirname + '/tapa-libros'));
 server.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Credentials', 'true');
