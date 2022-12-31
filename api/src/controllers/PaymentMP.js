@@ -21,17 +21,17 @@ const payment = {
         };
         
         mercadopago.payment
-            .save(payment_data)
-            .then((response) => {
-                return res.status(response.status).json({
-                    id: response.body.id,
-                    status: response.body.status,
-                    status_detail: response.body.status_detail,
-                });
-            })
-            .catch((err) => {
-                return res.status(500).send(err);
+        .save(payment_data)
+        .then((response) => {
+            return res.status(response.status).json({
+                id: response.body.id,
+                status: response.body.status,
+                status_detail: response.body.status_detail,
             });
+        })
+        .catch((err) => {
+            return res.status(500).send(err);
+        });
     }
 };
 
