@@ -2,14 +2,14 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT } = process.env;
 
 const sequelize = process.env.NODE_ENV === 'production'
     ? new Sequelize({
         database: DB_NAME,
 		dialect: 'mysql',
 		host: DB_HOST,
-		port: 3306,
+		port: DB_PORT,
 		username: DB_USER,
 		password: DB_PASSWORD,
 		pool: {
@@ -26,7 +26,7 @@ const sequelize = process.env.NODE_ENV === 'production'
         },
         ssl: true,
     })
-    : new Sequelize(`mysql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+    : new Sequelize(`mysql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
         {
             logging: false, //set to console.log to see the raw SQL queries
             native: false,  
