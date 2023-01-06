@@ -6,6 +6,7 @@ const cart = require('./cart');
 const product = require('./product');
 const author = require('./authors');
 const payment = require('./paymentMP');
+const dolar = require('./dolar');
 
 router.use('/users', users);
 router.use('/login', login);
@@ -14,5 +15,6 @@ router.use('/cart', cart);
 router.use('/product', product);
 router.use('/author', author);
 router.use('/process-payment', payment);
+router.use('/dolar', dolar);
 
 module.exports = router;
