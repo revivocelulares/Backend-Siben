@@ -43,7 +43,8 @@ module.exports = (sequelize) => {
             allowNull: true
         },
         format: {
-            type: DataTypes.STRING(),
+            type: DataTypes.ENUM(),
+            values: ["EPUB", "PDF"],
             allowNull: false,
         },
         ebook_links: {
