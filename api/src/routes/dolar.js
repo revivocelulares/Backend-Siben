@@ -8,7 +8,7 @@ route.get('/', async (req, res) => {
             'Authorization': `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDQ1MDg4ODIsInR5cGUiOiJleHRlcm5hbCIsInVzZXIiOiJyb21pbmFib2NvbkBob3RtYWlsLmNvbSJ9.G_b-fkqHKiL2gU2ncPwOfNI_BTJ46eidbueziqCrCtNMiXSvZskqM0btOqHSSKPyVuVHLcu4220H71YQS1geZg`,
         },
     });
-    return res.send(dolar.data[dolar.data.length - 1]);
+    return res.status(200).send(dolar.data[dolar.data.length - 1]);
 });
 
 module.exports = route;

@@ -45,6 +45,10 @@ module.exports = (sequelize) => {
         format: {
             type: DataTypes.STRING(),
             allowNull: false,
+        },
+        ebook_links: {
+            type: DataTypes.JSON(),
+            allowNull: true
         }
     }, {timestamps: true});
 };

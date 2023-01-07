@@ -11,7 +11,7 @@ const product = {
                 res.status(403).send({message:"Forbidden Access"});
             } else {
                 try {
-                    let { title, isbn, prolog, description, price_usd, price_ars, image, format, autores } = req.body;
+                    let { title, isbn, prolog, description, price_usd, price_ars, image, format, ebook_links, autores } = req.body;
                     let buff = fs.readFileSync(`./src/tapa-libros/${title}.jpg`);
                     image = buff.toString('base64');
                     let newProduct = await Product.create({
@@ -22,7 +22,8 @@ const product = {
                         price_usd, 
                         price_ars, 
                         image, 
-                        format
+                        format,
+                        ebook_links
                     });
                     Promise.all(autores.map(async author => {
                         const autor_DB = await Authors.findAll({
