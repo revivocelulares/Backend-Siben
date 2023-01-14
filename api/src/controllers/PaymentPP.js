@@ -3,8 +3,7 @@ const axios = require('axios');
 
 const paypal = {
     createOrder: async (req, res) => {
-        const { value } = req.body;
-        console.log('VALUE: ', value);
+        const value = req.body.data;
         try {
             const order = {
                 intent: "CAPTURE",
