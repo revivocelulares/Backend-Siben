@@ -90,7 +90,7 @@ const paypal = {
         const orderID = req.body.data;
         try {
             const response = await axios.get(
-                `https://api.sandbox.paypal.com/v2/checkout/orders/${orderID}`,
+                `${process.env.URL_BASE_PP}/v2/checkout/orders/${orderID}`,
                 {
                     auth: {
                         username: process.env.CLIENT_ID_PP,
@@ -98,7 +98,11 @@ const paypal = {
                     }
                 }
             );
-            return res.status(200).json(response.data); 
+            return res.status(200).send({
+                'Order ID': response.data.id,
+                'Status': response.data.status,
+                'Purchase Units': response.data.purchase_units
+            }); 
         } 
         catch (error) {
             console.error(error);
