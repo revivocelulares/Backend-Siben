@@ -30,6 +30,7 @@ const payment = {
             });
         })
         .catch((err) => {
+            console.log('ERROR: ' + err);
             return res.status(500).send(err);
         });
     }

@@ -3,6 +3,7 @@ const axios = require('axios');
 
 const paypal = {
     createOrder: async (req, res) => {
+        const { totalUSD } = req.body;
         try {
             const order = {
                 intent: "CAPTURE",
@@ -10,7 +11,7 @@ const paypal = {
                   {
                     amount: {
                       currency_code: "USD",
-                      value: "105.70",
+                      value: totalUSD,
                     },
                   },
                 ],
