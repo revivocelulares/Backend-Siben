@@ -86,6 +86,25 @@ const paypal = {
             return res.status(500).json('Internal Server error');
         }
     },
+    sendResponse: async (req, res) => {
+        const orderID = req.body.data;
+        try {
+            const response = await axios.get(
+                `https://api.sandbox.paypal.com/v2/checkout/orders/${orderID}`,
+                {
+                    auth: {
+                        username: process.env.CLIENT_ID_PP,
+                        password: process.env.SECRET_PP,
+                    }
+                }
+            );
+            return res.status(200).json(response.data); 
+        } 
+        catch (error) {
+            console.error(error);
+            return res.status(500).json('Internal Server error');
+        }
+    },
     cancelOrder: (req, res) => {
         res.redirect('https://edisiben.vercel.app/cart');
     }
