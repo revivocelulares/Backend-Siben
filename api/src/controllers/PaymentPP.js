@@ -3,18 +3,11 @@ const axios = require('axios');
 
 const paypal = {
     createOrder: async (req, res) => {
-        const { totalUSD } = req.body;
+        const { purchase_units } = req.body;
         try {
             const order = {
                 intent: "CAPTURE",
-                purchase_units: [
-                  {
-                    amount: {
-                      currency_code: "USD",
-                      value: totalUSD,
-                    },
-                  },
-                ],
+                purchase_units: purchase_units,
                 application_context: {
                   brand_name: "EdiSiben",
                   landing_page: "NO_PREFERENCE",
