@@ -44,7 +44,6 @@ const paypal = {
                     },
                 }
             );
-            console.log(access_token);
 
             // make a request
             const response = await axios.post(
