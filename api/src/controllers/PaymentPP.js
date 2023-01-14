@@ -81,7 +81,8 @@ const paypal = {
             );
             console.log(response.data);
 
-            res.redirect('https://edisiben.vercel.app/payment/complete').json(response.data);
+            res.redirect('https://edisiben.vercel.app/payment/complete');
+            return res.status(200).json(response.data);
         }
         catch (error) {
             console.error(error);
