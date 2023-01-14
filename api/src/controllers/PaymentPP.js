@@ -19,8 +19,8 @@ const paypal = {
                   brand_name: "EdiSiben",
                   landing_page: "NO_PREFERENCE",
                   user_action: "PAY_NOW",
-                  return_url: 'http://localhost:3001/api/payment/paypal/capture-order',
-                  cancel_url: 'http://localhost:3001/api/payment/paypal/cancel-order',
+                  return_url: 'https://apisiben.onrender.com/api/payment/paypal/capture-order',
+                  cancel_url: 'https://apisiben.onrender.com/api/payment/paypal/cancel-order',
                 },
             };
             
@@ -81,7 +81,7 @@ const paypal = {
             );
             console.log(response.data);
 
-            res.status(200).json('Capturando pago');
+            res.status(200).json('https://edisiben.vercel.app/payment/complete');
         }
         catch (error) {
             console.error(error);
@@ -89,7 +89,7 @@ const paypal = {
         }
     },
     cancelOrder: (req, res) => {
-        res.send('http://localhost:3001/api/payment/paypal/cancel-order');
+        res.redirect('https://edisiben.vercel.app/cart');
     }
 }
 
