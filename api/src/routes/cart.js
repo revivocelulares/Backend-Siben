@@ -14,7 +14,7 @@ router.put('/:ClientEmail', verify_client_token, async(req, res) => {
     } else {
       try {
             let info = req.body;
-            console.log('INFO!!!!!!!!!!!  ' + info);          
+            console.log('INFO!!!!!!!!!!!  ' + JSON.stringify(info));          
             let clientEmail = req.params['ClientEmail'];
             let response = await updateCart(info, clientEmail);
             return response ? res.status(200).json(response) : res.status(404);
