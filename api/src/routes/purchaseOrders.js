@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { newOrder,updateOrder, getAllOrders, getOrdersByStatus, getOrderDetails, getOrdersByClientId} = require('../controllers/purchaseOrders');
+const { newOrder,updateOrder, getAllOrders, getOrdersByStatus, getOrderDetails, getOrdersByClientId} = require('../controllers/PurchaseOrders');
 const router = Router();
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
