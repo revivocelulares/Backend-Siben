@@ -13,8 +13,7 @@ router.put('/:ClientEmail', verify_client_token, async(req, res) => {
       res.status(403).send({message:"Forbidden Access"});
     } else {
       try {
-            let info = req.body;
-            console.log('INFO!!!!!!!!!!!  ' + JSON.stringify(info));          
+            let info = req.body;         
             let clientEmail = req.params['ClientEmail'];
             let response = await updateCart(info, clientEmail);
             return response ? res.status(200).json(response) : res.status(404);
