@@ -89,6 +89,7 @@ const paypal = {
     sendResponse: async (req, res) => {
         const orderID = req.body.data;
         try {
+            console.log('ORDER_ID: ' + orderID);
             const response = await axios.get(
                 `${process.env.URL_BASE_PP}/v2/checkout/orders/${orderID}`,
                 {
