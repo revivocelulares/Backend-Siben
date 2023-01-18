@@ -60,7 +60,8 @@ const {
     Users,
     Cart,
     Invoice,
-    PurchaseOrder
+    PurchaseOrder,
+    PaymentResponse
 } = sequelize.models;
 
 //Acá todas las relaciones
@@ -70,6 +71,8 @@ Client.hasMany(PurchaseOrder);
 PurchaseOrder.belongsTo(Client);
 PurchaseOrder.hasOne(Invoice);
 Invoice.belongsTo(PurchaseOrder);
+PurchaseOrder.hasOne(PaymentResponse);
+PaymentResponse.belongsTo(PurchaseOrder);
 
 Product.belongsToMany(Authors, { through: 'Product_Authors'});
 Authors.belongsToMany(Product, { through: 'Product_Authors'});
