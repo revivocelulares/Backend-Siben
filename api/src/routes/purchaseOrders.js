@@ -23,14 +23,14 @@ router.post('/', verify_client_token, async(req, res) => {
     });
 });
 
-router.patch('/:id', verify_admin_token, async(req, res) => {
+router.patch('/:id', verify_client_token, async(req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, async(error, authData) => {
       if(error){
         res.status(403).send({message:"Forbidden Access"});
       } else {
         try { 
             let info = req.body;
-            let { id}  = req.params;
+            let { id } = req.params;
             let response = await updateOrder(info, id);
             return response?res.status(200).json(response):res.status(404);
         } catch(e) {
@@ -48,7 +48,7 @@ router.get("/", verify_admin_token, async (req, res) => {
       } else {
         try {
             let { status } = req.query;
-            let {client} = req.query;
+            let { client } = req.query;
             let response;
             if (status) response = await getOrdersByStatus(status);
             if (client) response = await getOrdersByClientId(client);
