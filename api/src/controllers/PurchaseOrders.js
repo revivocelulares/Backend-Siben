@@ -93,7 +93,7 @@ const getOrdersByStatus = async (status) => {
 const getOrdersByClientId = async (client) => {   
     try {
         const response = await PurchaseOrder.findAll({
-            where: { ClientPhone: client },
+            where: { ClientEmail: client },
             include: {
                 model: Client,
                 attributes: ['name', 'lastname'],
