@@ -71,7 +71,7 @@ router.get("/:id", verify_client_token, async (req, res) => {
     } else {
       try {
           let { id } = req.params;
-           response = await getOrderDetails(id);
+           response = await getOrdersByClientId(id);
 
           return response?res.status(200).json(response):res.status(404)
 
