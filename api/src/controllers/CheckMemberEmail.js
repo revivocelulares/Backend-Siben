@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const check = {
     checkSibenEmail: async (req, res) => {
-        const query = 'SELECT * FROM users WHERE group_id=3 AND active=1';
+        const query = 'SELECT * FROM users';
 
         try {
             const conn = await dbconn();          
