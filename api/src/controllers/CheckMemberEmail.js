@@ -3,15 +3,17 @@ require('dotenv').config();
 const { SIBEN_DB_USER, SIBEN_DB_PASSWORD, SIBEN_DB_HOST, SIBEN_DB_NAME } = process.env;
 
 const check = {
-    checkSibenEmail: (req, res) => {
-        let conn = mysql.createConnection({
+    checkSibenEmail: async (req, res) => {
+        const conectar = mysql.createConnection({
             host: SIBEN_DB_HOST,
             user: SIBEN_DB_USER,
             password: SIBEN_DB_PASSWORD,
             database: SIBEN_DB_NAME
         });
 
-        let query = 'SELECT * FROM users WHERE group_id=3 AND active=1';
+        const conn = await conectar();
+
+        const query = 'SELECT * FROM users WHERE group_id=3 AND active=1';
 
         conn.connect((error) => {
             if (error){
