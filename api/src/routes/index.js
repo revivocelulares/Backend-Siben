@@ -10,6 +10,7 @@ const dolar = require('./dolar');
 const paypal = require('./paymentPP');
 const invoices = require('./invoice');
 const purchaseOrders = require('./purchaseOrders');
+const check = require('./checkmemberemail');
 
 router.use('/users', users);
 router.use('/login', login);
@@ -22,5 +23,6 @@ router.use('/payment', paypal);
 router.use('/dolar', dolar);
 router.use('/orders', purchaseOrders);
 router.use('/invoice', invoices);
+router.use('/checkmail', check);
 
 module.exports = router;
