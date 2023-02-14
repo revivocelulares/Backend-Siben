@@ -16,8 +16,8 @@ const check = {
                 return res.status(200).json(results[0]);
             });
             conn.end;
-        } catch (error) {
-            console.log(error);
+        } catch (err) {
+            console.log(err);
         }
     }
 }
