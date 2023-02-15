@@ -12,8 +12,12 @@ const check = {
             database: SIBEN_DB_NAME })
         .then(conn => conn.query(`SELECT * FROM users WHERE email=? AND group_id=3 AND active=1`, [Clientemail]))
         .then(([rows, fields]) => {
-            console.log(rows);
-            return res.status(200).json(rows); })
+            console.log(rows.length);
+            return rows.length > 0 
+                    ? res.status(200).json(rows) 
+                    : res.status(404).json({ mensaje: 'Email no encontrado' }); 
+                }
+            )
         .catch(error => console.log(error));
     }
 }
