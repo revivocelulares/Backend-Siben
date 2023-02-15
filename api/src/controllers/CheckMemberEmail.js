@@ -4,7 +4,7 @@ const { SIBEN_DB_USER, SIBEN_DB_PASSWORD, SIBEN_DB_HOST, SIBEN_DB_NAME } = proce
 
 const check = {
     checkSibenEmail: (req, res) => {
-        const query = 'SELECT * FROM users';
+        const query = 'SELECT * FROM users WHERE group_id=3';
         mysql.createConnection({
             host: SIBEN_DB_HOST,
             user: SIBEN_DB_USER,
