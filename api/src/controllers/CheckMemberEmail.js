@@ -9,10 +9,10 @@ const check = {
             user: SIBEN_DB_USER,
             password: SIBEN_DB_PASSWORD,
             database: SIBEN_DB_NAME })
-        .then(conn => conn.query('SELECT email FROM users'))
+        .then(conn => conn.query('SELECT * FROM users'))
         .then(([rows, fields]) => {
-            console.log(rows[0].email);
-            return res.status(200).json(rows[0].email); })
+            console.log(rows);
+            return res.status(200).json(rows); })
         .catch(error => console.log(error));
 
         // try {
