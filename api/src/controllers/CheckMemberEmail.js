@@ -9,26 +9,11 @@ const check = {
             user: SIBEN_DB_USER,
             password: SIBEN_DB_PASSWORD,
             database: SIBEN_DB_NAME })
-        .then(conn => conn.query('SELECT * FROM users'))
+        .then(conn => conn.query('SELECT email FROM users WHERE group_id=3 AND active=1'))
         .then(([rows, fields]) => {
-            console.log(rows);
-            return res.status(200).json(rows); })
+            console.log(rows.email);
+            return res.status(200).json(rows.email); })
         .catch(error => console.log(error));
-
-        // try {
-        //     const conn = await dbconn();          
-
-        //     await conn.query(query, (error, results, fields) =>{
-        //         if(error) {
-        //             return console.error('Error: ' + error.message);
-        //         }
-        //         console.log(results[0]);
-        //         return res.status(200).json(results[0]);
-        //     });
-        //     await conn.end();
-        // } catch (err) {
-        //     console.log(err);
-        // }
     }
 }
 
