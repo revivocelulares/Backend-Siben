@@ -11,8 +11,8 @@ const check = {
             database: SIBEN_DB_NAME })
         .then(conn => conn.query('SELECT email FROM users WHERE group_id=3 AND active=1'))
         .then(([rows, fields]) => {
-            console.log(rows.email);
-            return res.status(200).json(rows.email); })
+            console.log(rows);
+            return res.status(200).json(rows); })
         .catch(error => console.log(error));
     }
 }
