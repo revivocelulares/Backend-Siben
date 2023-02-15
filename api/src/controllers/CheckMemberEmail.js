@@ -10,7 +10,7 @@ const check = {
             user: SIBEN_DB_USER,
             password: SIBEN_DB_PASSWORD,
             database: SIBEN_DB_NAME })
-        .then(conn => conn.query(`SELECT * FROM users WHERE email=${Clientemail} AND group_id=3 AND active=1`))
+        .then(conn => conn.query(`SELECT * FROM users WHERE email=? AND group_id=3 AND active=1`, [Clientemail]))
         .then(([rows, fields]) => {
             console.log(rows);
             return res.status(200).json(rows); })
