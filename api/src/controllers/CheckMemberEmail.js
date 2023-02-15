@@ -8,14 +8,14 @@ const check = {
         try {
             const conn = await dbconn();          
 
-            conn.query(query, (error, results, fields) =>{
+            await conn.query(query, (error, results, fields) =>{
                 if(error) {
                     return console.error('Error: ' + error.message);
                 }
                 console.log(results[0]);
                 return res.status(200).json(results[0]);
             });
-            conn.end;
+            await conn.end;
         } catch (err) {
             console.log(err);
         }
