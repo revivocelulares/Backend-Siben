@@ -1,9 +1,9 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 require('dotenv').config();
 const { SIBEN_DB_USER, SIBEN_DB_PASSWORD, SIBEN_DB_HOST, SIBEN_DB_NAME } = process.env;
 
 const dbconn = async () => {
-    let conn = mysql.createConnection({
+    const conn = mysql.createConnection({
         host: SIBEN_DB_HOST,
         user: SIBEN_DB_USER,
         password: SIBEN_DB_PASSWORD,
