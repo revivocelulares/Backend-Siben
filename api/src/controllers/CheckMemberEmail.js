@@ -4,16 +4,15 @@ const { SIBEN_DB_USER, SIBEN_DB_PASSWORD, SIBEN_DB_HOST, SIBEN_DB_NAME } = proce
 
 const check = {
     checkSibenEmail: (req, res) => {
-        const query = 'SELECT * FROM users WHERE group_id=3';
         mysql.createConnection({
             host: SIBEN_DB_HOST,
             user: SIBEN_DB_USER,
             password: SIBEN_DB_PASSWORD,
             database: SIBEN_DB_NAME })
-        .then(conn => conn.query(query))
+        .then(conn => conn.query('SELECT email FROM users'))
         .then(([rows, fields]) => {
-            console.log(rows[0]);
-            return res.status(200).json(rows[0]); })
+            console.log(rows[0].email);
+            return res.status(200).json(rows[0].email); })
         .catch(error => console.log(error));
 
         // try {
