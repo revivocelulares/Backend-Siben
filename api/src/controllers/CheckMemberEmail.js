@@ -14,7 +14,7 @@ const check = {
         .then(([rows, fields]) => {
             console.log(rows.length);
             return rows.length > 0 
-                    ? res.status(200).json(rows) 
+                    ? res.status(200).json(rows[0].email) 
                     : res.status(404).json({ mensaje: 'Email no encontrado' }); 
                 }
             )
