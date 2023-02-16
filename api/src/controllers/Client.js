@@ -3,29 +3,17 @@ const { Client, Cart } = require('../db.js');
 const sendMail = require('./Mailer.js');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const { SIBEN_DB_USER, SIBEN_DB_PASSWORD, SIBEN_DB_HOST, SIBEN_DB_NAME } = process.env;
-const mysql = require('mysql2/promise');
+// const { SIBEN_DB_USER, SIBEN_DB_PASSWORD, SIBEN_DB_HOST, SIBEN_DB_NAME } = process.env;
+// const mysql = require('mysql2/promise');
+const { checkSibenEmail } = require('./CheckMemberEmail');
 
 const client = {
     addClient: async (req, res) => {
         try {
             const { email, login_password, name, lastname, country, isMember, profession, resident, ip_address, long, lat } = req.body;
             let token = crypto.createHash('md5').update(Date.now().toString()).digest('hex');
-
-            const checkmail = await mysql.createConnection({
-                                        host: SIBEN_DB_HOST,
-                                        user: SIBEN_DB_USER,
-                                        password: SIBEN_DB_PASSWORD,
-                                        database: SIBEN_DB_NAME })
-                                    .then(conn => conn.query(`SELECT * FROM users WHERE email=? AND group_id=3 AND active=1`, [email]))
-                                    .then(([rows, fields]) => {
-                                        return rows.length > 0 
-                                                ? rows[0].email
-                                                : null;  
-                                            }
-                                        )
-                                    .catch(error => console.log(error));
-            console.log('A VER QUE TRAE: ' + checkmail)
+            const verifyMail = checkSibenEmail(email);
+            console.log('A VER QUE PUTAS TRAE: ' + verifyMail);
 
             const createdClient = await Client.findOrCreate({
                 where: { email: email },
