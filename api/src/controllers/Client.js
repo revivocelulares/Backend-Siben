@@ -12,19 +12,19 @@ const client = {
             const { email, login_password, name, lastname, country, isMember, profession, resident, ip_address, long, lat } = req.body;
             let token = crypto.createHash('md5').update(Date.now().toString()).digest('hex');
 
-            const checkmail = mysql.createConnection({
-                                    host: SIBEN_DB_HOST,
-                                    user: SIBEN_DB_USER,
-                                    password: SIBEN_DB_PASSWORD,
-                                    database: SIBEN_DB_NAME })
-                                .then(conn => conn.query(`SELECT * FROM users WHERE email=? AND group_id=3 AND active=1`, [email]))
-                                .then(([rows, fields]) => {
-                                    rows.length > 0 
-                                    ? res.status(200).json(rows[0].email) 
-                                    : res.status(404).json({ mensaje: 'Email no encontrado' });  
-                                        }
-                                    )
-                                .catch(error => console.log(error));
+            const checkmail = await mysql.createConnection({
+                                        host: SIBEN_DB_HOST,
+                                        user: SIBEN_DB_USER,
+                                        password: SIBEN_DB_PASSWORD,
+                                        database: SIBEN_DB_NAME })
+                                    .then(conn => conn.query(`SELECT * FROM users WHERE email=? AND group_id=3 AND active=1`, [email]))
+                                    .then(([rows, fields]) => {
+                                        return rows.length > 0 
+                                                ? rows[0].email
+                                                : null;  
+                                            }
+                                        )
+                                    .catch(error => console.log(error));
             console.log('A VER QUE TRAE: ' + checkmail)
 
             const createdClient = await Client.findOrCreate({
@@ -36,7 +36,7 @@ const client = {
                     lastname,
                     country,
                     isRegistered: email ? true : false,
-                    isMember: checkmail ? 'Si' : 'No',
+                    isMember,
                     profession,
                     resident,
                     ip_address,
