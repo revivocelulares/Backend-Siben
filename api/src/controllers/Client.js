@@ -12,7 +12,8 @@ const client = {
         try {
             const { email, login_password, name, lastname, country, isMember, profession, resident, ip_address, long, lat } = req.body;
             let token = crypto.createHash('md5').update(Date.now().toString()).digest('hex');
-            const verifyMail = checkSibenEmail(email);
+            const verifyMail = await checkSibenEmail(email);
+            
             console.log('A VER QUE PUTAS TRAE: ' + verifyMail);
 
             const createdClient = await Client.findOrCreate({

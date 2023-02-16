@@ -3,7 +3,7 @@ require('dotenv').config();
 const { SIBEN_DB_USER, SIBEN_DB_PASSWORD, SIBEN_DB_HOST, SIBEN_DB_NAME } = process.env;
 
 const check = {
-    checkSibenEmail: (email) => {
+    checkSibenEmail: async (email) => {
         //const Clientemail = req.params["email"];
         mysql.createConnection({
             host: SIBEN_DB_HOST,
