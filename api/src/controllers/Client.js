@@ -19,7 +19,7 @@ const client = {
                 database: SIBEN_DB_NAME });
             
             const [rows, fields] = await conn.execute(`SELECT * FROM users WHERE email=? AND group_id=3 AND active=1`, [email]);
-            const verify_email = rows.length > 0 ? rows[0].email : null;
+            const verify_email = rows.length > 0 ? rows[0]?.email : null;
             console.log('Rows Length: ' + rows.length);
             console.log('Verify Email:  ' + verify_email); 
 
