@@ -8,9 +8,11 @@ const authors = {
                 res.status(403).send({message:"Forbidden Access"});
             } else {
                 try {
-                    let { name } = req.body;
+                    let { name, description, image } = req.body;
                     let newAuthor = await Authors.create({
-                        name: name
+                        name: name,
+                        description: description,
+                        image: image
                     });
                     res.status(200).json({newAuthor, message:"Authorized Access", authData});
                 } catch (error) {

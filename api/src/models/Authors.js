@@ -11,6 +11,14 @@ module.exports = (sequelize) => {
       name: {
           type: DataTypes.STRING(),
           allowNull: false
+      },
+      description: {
+        type: DataTypes.STRING(),
+        allowNull: true
+      },
+      image: {
+        type: DataTypes.STRING(),
+        allowNull: true
       }
   }, { timestamps: false });
 };
