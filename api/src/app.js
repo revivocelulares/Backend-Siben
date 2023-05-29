@@ -19,7 +19,7 @@ server.use(morgan('dev'));
 server.use(corss());
 server.use('/api/tapa-libros', express.static(__dirname + '/tapa-libros'));
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', 'https://admin-siben.vercel.app');
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
