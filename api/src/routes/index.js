@@ -18,7 +18,7 @@ router.use('/client', client);
 router.use('/cart', cart);
 router.use('/product', product);
 router.use('/author', author);
-router.use('/process-payment', payment);
+router.use('/create_preference', payment);
 router.use('/payment', paypal);
 router.use('/dolar', dolar);
 router.use('/orders', purchaseOrders);
