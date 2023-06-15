@@ -8,3 +8,5 @@ conn.sync({ force: true }).then(() => {
       console.log('server listening on port 3001');
     });
   }, (error) => console.log(error));
+
+//Coment
