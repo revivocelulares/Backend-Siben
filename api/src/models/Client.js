@@ -53,18 +53,6 @@ module.exports = (sequelize) => {
         type: DataTypes.ENUM(),
         values: ["Si", "No"],
         allowNull: false
-    },
-    ip_address: {
-        type: DataTypes.STRING(),
-        allowNull: false
-    },
-    long: {
-        type: DataTypes.FLOAT(),
-        allowNull: false
-    },
-    lat: {
-        type: DataTypes.FLOAT(),
-        allowNull: false
     }
   }, { timestamps: false });
 };
