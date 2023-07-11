@@ -14,7 +14,7 @@ router.post('/', verify_client_token, async(req, res) => {
         try{
             let{ orderDetails, address, ClientEmail, total, orderStatus } = req.body;
             let response = await newOrder(orderDetails, address, ClientEmail, total, orderStatus);
-           return response?res.status(200).json(response):res.status(404);
+           return response ? res.status(200).json(response) : res.status(404);
         }catch(e){
             console.log(e);
             return res.status(500).json('Error en el servidor')
@@ -32,7 +32,7 @@ router.patch('/:id', verify_client_token, async(req, res) => {
             let info = req.body;
             let { id } = req.params;
             let response = await updateOrder(info, id);
-            return response?res.status(200).json(response):res.status(404);
+            return response ? res.status(200).json(response) : res.status(404);
         } catch(e) {
             console.log(e);
             return res.status(500).json('Error en el servidor')
@@ -54,7 +54,7 @@ router.get("/", verify_admin_token, async (req, res) => {
             if (client) response = await getOrdersByClientId(client);
             if (!status && !client) response = await getAllOrders();
             
-            return response?res.status(200).json(response):res.status(404)
+            return response ? res.status(200).json(response) : res.status(404)
 
         } catch (error) {
             console.log(error);
@@ -73,7 +73,7 @@ router.get("/:id", verify_client_token, async (req, res) => {
           let { id } = req.params;
            response = await getOrdersByClientId(id);
 
-          return response?res.status(200).json(response):res.status(404)
+          return response ? res.status(200).json(response) : res.status(404)
 
       } catch (error) {
           console.log(error);
