@@ -18,8 +18,13 @@ module.exports = (sequelize) => {
       type: DataTypes.JSON(),
       allowNull: false,
     },
-    total: {
+    total_ars: {
       type: DataTypes.FLOAT(),
+      allowNull: false
+
+    },
+    total_usd: {
+      type: DataTypes.INTEGER(),
       allowNull: false
 
     }
