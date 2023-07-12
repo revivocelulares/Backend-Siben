@@ -1,7 +1,7 @@
 const { PurchaseOrder, Client, Invoice } = require('../db');
 const sendMail = require('./Mailer.js');
 
-const newOrder = async (orderDetails, ClientEmail, total_ars, total_usd, orderStatus) => {
+const newOrder = async (orderDetails, ClientEmail, total_usd, total_ars, orderStatus) => {
     try {
         let purchaseOrder = await PurchaseOrder.create({
             orderDetails,
