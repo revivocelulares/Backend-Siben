@@ -26,7 +26,6 @@ module.exports = (sequelize) => {
     total_ars: {
       type: DataTypes.FLOAT(),
       allowNull: false
-
     }
   },
   { timestamps: true });
