@@ -5,8 +5,8 @@ const newOrder = async (info, ClientEmail, total_ars, total_usd, orderStatus) =>
     try {
         let purchaseOrder = await PurchaseOrder.create({
             orderDetails: info,
-            total_usd,
             total_ars,
+            total_usd,
             orderStatus
         });
         let resp = await Client.findByPk(ClientEmail);
