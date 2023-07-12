@@ -12,8 +12,8 @@ router.post('/', verify_client_token, async(req, res) => {
         res.status(403).send({message:"Forbidden Access"});
       } else {
         try{
-            let{ orderDetails, address, ClientEmail, total, orderStatus } = req.body;
-            let response = await newOrder(orderDetails, address, ClientEmail, total, orderStatus);
+            let{ orderDetails, ClientEmail, total_usd, total_ars, orderStatus } = req.body;
+            let response = await newOrder(orderDetails, ClientEmail, total_usd, total_ars, orderStatus);
            return response ? res.status(200).json(response) : res.status(404);
         }catch(e){
             console.log(e);
