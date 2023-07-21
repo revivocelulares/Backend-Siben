@@ -11,6 +11,7 @@ const paypal = require('./paymentPP');
 const invoices = require('./invoice');
 const purchaseOrders = require('./purchaseOrders');
 const check = require('./checkmemberemail');
+const paymentresponse = require('./paymentresponse');
 
 router.use('/users', users);
 router.use('/login', login);
@@ -24,5 +25,6 @@ router.use('/dolar', dolar);
 router.use('/orders', purchaseOrders);
 router.use('/invoice', invoices);
 router.use('/checkmail', check);
+router.use('/paymentresponse', paymentresponse);
 
 module.exports = router;

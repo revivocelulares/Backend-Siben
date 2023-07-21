@@ -14,9 +14,9 @@ const payment = {
                 }
             ],
             back_urls: {
-                "success": "https://testfront.app.worldwidelab.com.ar/",
-                "failure": "https://testfront.app.worldwidelab.com.ar/",
-                "pending": "https://testfront.app.worldwidelab.com.ar/"
+                "success": "http://localhost:5173/thankyoupagemp",
+                "failure": "http://localhost:5173/thankyoupagemp",
+                "pending": "http://localhost:5173/thankyoupagemp"
             },
             auto_return: "approved"
         };

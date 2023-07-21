@@ -9,7 +9,7 @@ const mysql = require('mysql2/promise');
 const client = {
     addClient: async (req, res) => {
         try {
-            const { email, login_password, name, lastname, country, isMember, profession, resident, ip_address, long, lat } = req.body;
+            const { email, login_password, name, lastname, country, isMember, profession, resident } = req.body;
             let token = crypto.createHash('md5').update(Date.now().toString()).digest('hex');
 
             const conn = await mysql.createConnection({
@@ -33,9 +33,6 @@ const client = {
                     isMember: verify_email != null ? 'Si' : 'No',
                     profession,
                     resident,
-                    ip_address,
-                    long,
-                    lat,
                     token
                 }
             });
@@ -66,7 +63,7 @@ const client = {
                 newCart.setClient(email);
             };
 
-            res.status(200).send(createdClient[1] === true ? "Cliente creado de manera Exitosa!!" : "Ese  cliente ya existe");
+            res.status(200).send(createdClient[1] === true ? "Cliente creado de manera Exitosa!!" : "Ese cliente ya existe");
 
         } catch (error) {
             console.log('Error: ' + error);

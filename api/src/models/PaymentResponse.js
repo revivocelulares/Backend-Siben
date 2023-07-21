@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   sequelize.define('PaymentResponse', {
     paymentId: {
-      type: DataTypes.INTEGER(),
+      type: DataTypes.STRING(),
       allowNull: false,
       primaryKey: true,
       unique: true
