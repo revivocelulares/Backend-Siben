@@ -10,6 +10,7 @@ const newOrder = async (orderDetails, ClientEmail, total_usd, total_ars, orderSt
             orderStatus
         });
         let resp = await Client.findByPk(ClientEmail);
+        console.log(resp);
         purchaseOrder.setClient(resp);
         let email = resp.dataValues.email;
         let orderId = purchaseOrder.dataValues.orderId;
@@ -18,8 +19,8 @@ const newOrder = async (orderDetails, ClientEmail, total_usd, total_ars, orderSt
             let date = Date.now();
             let newInvoice = await Invoice.create({
                 invoice_date: date,
-                invoice_detail: info,
-                invoice_ammount: total
+                invoice_detail: orderDetails,
+                invoice_ammount: total_ars
             });
             newInvoice.setPurchaseOrder(orderId);
 

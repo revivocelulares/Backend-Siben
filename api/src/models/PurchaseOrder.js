@@ -9,9 +9,7 @@ module.exports = (sequelize) => {
       primaryKey: true,
     },
     orderStatus: {
-      type: DataTypes.ENUM(),
-      values: ['Canceled', 'Submited', 'Completed', 'Processing'],
-      defaultValue: 'Submited',
+      type: DataTypes.STRING(),
       allowNull: false,
     },
     orderDetails: {

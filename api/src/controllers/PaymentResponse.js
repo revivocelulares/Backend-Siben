@@ -10,16 +10,17 @@ const paymentResponse = {
             } else {
                 try {
                     const { paymentId, payment_gateway, payment_status, orderId } = req.body;
+                    console.log('BODY  ---  ', req.body);
                     let newPayment = await PaymentResponse.create({
                         paymentId,
                         payment_gateway,
                         payment_status
                     });
-
+                    console.log('Nuevo Pago   ---   ' , newPayment);
                     let order = await PurchaseOrder.findOne({
                         where: {orderId: orderId}
                     });
-
+                    console.log('ORDEN ID  -  ', orderId);
                     order.setPaymentResponse(paymentId);
 
                     res.status(200).json({newPayment, message:"Authorized Access", authData});
