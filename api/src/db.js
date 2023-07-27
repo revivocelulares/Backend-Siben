@@ -71,6 +71,8 @@ Client.hasMany(PurchaseOrder);
 PurchaseOrder.belongsTo(Client);
 PurchaseOrder.hasOne(Invoice);
 Invoice.belongsTo(PurchaseOrder);
+Client.hasMany(Invoice);
+Invoice.belongsTo(Client);
 PurchaseOrder.hasOne(PaymentResponse);
 PaymentResponse.belongsTo(PurchaseOrder);
 

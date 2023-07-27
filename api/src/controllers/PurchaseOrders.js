@@ -22,6 +22,7 @@ const newOrder = async (orderDetails, ClientEmail, total_usd, total_ars, orderSt
                 invoice_detail: orderDetails,
                 invoice_ammount: total_ars
             });
+            newInvoice.setClient(email);
             newInvoice.setPurchaseOrder(orderId);
 
             const mail = {

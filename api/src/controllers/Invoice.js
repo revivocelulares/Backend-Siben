@@ -1,5 +1,4 @@
-const axios = require('axios');
-const { Invoice } = require('../db.js');
+const { Invoice, PurchaseOrder, Client } = require('../db.js');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
@@ -24,9 +23,15 @@ const invoice = {
         res.status(403).send({message:"Forbidden Access"});
       } else {
         try {
-          const { invoiceID } = req.params;
-          const getinvoiceID = await Invoice.findOne({
-            where: {invoiceID: invoiceID}
+          const { ClientEmail } = req.params;
+          const getinvoiceID = await Invoice.findAll({
+            where: {ClientEmail: ClientEmail},
+            include: [{
+              model: PurchaseOrder
+            },
+            {
+              model: Client
+            }]
           });
           res.status(200).json(getinvoiceID);
         } catch (error) {
