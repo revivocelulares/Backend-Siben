@@ -38,8 +38,7 @@ const paymentResponse = {
                 try {
                     let response = await PaymentResponse.findAll({
                         include: {
-                            model: PurchaseOrder,
-                            attributes: ['orderId']
+                            model: PurchaseOrder
                         }
                     });
                     res.status(200).json({response, message:"Authorized Access", authData});
