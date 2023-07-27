@@ -1,4 +1,4 @@
-const { PurchaseOrder, Client, Invoice } = require('../db');
+const { PurchaseOrder, Client, Invoice, PaymentResponse } = require('../db');
 const sendMail = require('./Mailer.js');
 
 const newOrder = async (orderDetails, ClientEmail, total_usd, total_ars, orderStatus) => {
@@ -122,11 +122,31 @@ const getOrderDetails = async (id) => {
     }
 };
 
+const getOrderWithPayment = async (client) => {
+    try{
+        const response = await PurchaseOrder.findAll({
+            where: { ClientEmail: client },
+            include: [{
+                model: Client,
+                attributes: ['email']
+            },
+            {
+                model: PaymentResponse
+            }]
+        });
+
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 module.exports = {
     newOrder,
     updateOrder,
     getAllOrders,
     getOrdersByStatus,
     getOrderDetails,
-    getOrdersByClientId
+    getOrdersByClientId,
+    getOrderWithPayment,
 }
