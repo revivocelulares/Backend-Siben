@@ -1,5 +1,5 @@
 const { Router, response } = require('express');
-const { newOrder,updateOrder, getAllOrders, getOrdersByStatus, getOrderDetails, getOrdersByClientId, getOrderWithPayment } = require('../controllers/PurchaseOrders');
+const { newOrder,updateOrder, getAllOrders, getOrdersByStatus, getOrderDetails, getOrdersByClientId, getOrderWithPayment, getOrderWithPaymentById } = require('../controllers/PurchaseOrders');
 const router = Router();
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -92,6 +92,23 @@ router.get("/orderwithpay/:ClientEmail", verify_admin_token, async (req, res) =>
         let { ClientEmail } = req.params;
         let response = await getOrderWithPayment(ClientEmail);
         return response ? res.status(200).json(response) : res.status(404);        
+      } catch (error) {
+        console.log(error);
+        return res.status(500).json('Error en el servidor.');
+      }
+    }
+  });
+});
+
+router.get("/uniqueorderwithpay/:ClientEmail/:orderId", verify_admin_token, async (req, res) => {
+  jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
+    if(error) {
+      res.status(403).send({message:"Forbidden Access"});
+    } else {
+      try {
+        let { ClientEmail, orderId } = req.params;
+        let response = await getOrderWithPaymentById(ClientEmail, orderId);
+        return response ? res.status(200).json(response) : res.status(404);
       } catch (error) {
         console.log(error);
         return res.status(500).json('Error en el servidor.');

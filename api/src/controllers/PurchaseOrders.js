@@ -142,6 +142,25 @@ const getOrderWithPayment = async (client) => {
     }
 };
 
+const getOrderWithPaymentById = async (client, orderId) => {
+    try {
+        const response = await PurchaseOrder.findByPk(orderId, {
+            where: { ClientEmail: client },
+            include: [{
+                model: Client,
+                attributes: ['email']
+            },
+            {
+                model: PaymentResponse
+            }]
+        });
+
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 module.exports = {
     newOrder,
     updateOrder,
@@ -150,4 +169,5 @@ module.exports = {
     getOrderDetails,
     getOrdersByClientId,
     getOrderWithPayment,
+    getOrderWithPaymentById
 }
