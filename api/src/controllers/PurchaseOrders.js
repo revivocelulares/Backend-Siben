@@ -148,7 +148,7 @@ const getOrderWithPaymentById = async (client, orderId) => {
             where: { ClientEmail: client },
             include: [{
                 model: Client,
-                attributes: ['email']
+                attributes: ['email', 'name', 'lastname']
             },
             {
                 model: PaymentResponse
