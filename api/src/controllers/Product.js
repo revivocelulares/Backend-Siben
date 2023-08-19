@@ -178,10 +178,10 @@ const product = {
             });
             if (type === 'ASC') {
                 data.sort(function (a, b) {
-                    if (a.price_ars > b.price_ars) {
+                    if (a.price_usd > b.price_usd) {
                         return 1;
                     }
-                    if (a.price_ars < b.price_ars) {
+                    if (a.price_usd < b.price_usd) {
                         return -1;
                     }
                     return 0;
@@ -189,10 +189,10 @@ const product = {
                 return res.status(200).json(data);
             } else if (type === 'DESC') {
                 data.sort(function (a, b) {
-                    if (a.price_ars < b.price_ars) {
+                    if (a.price_usd < b.price_usd) {
                         return 1;
                     }
-                    if (a.price_ars > b.price_ars) {
+                    if (a.price_usd > b.price_usd) {
                         return -1;
                     }
                     return 0;
