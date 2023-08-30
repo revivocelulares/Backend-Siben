@@ -5,7 +5,7 @@ const { addProduct, updateProduct, deleteProduct, hard_deleteProduct, getAllProd
 route.post("/", verify_admin_token, addProduct);
 route.post("/foto-tapa", verify_admin_token, uploadCaratula);
 route.put("/:id_product", verify_admin_token, updateProduct);
-route.put("/delete/:id_product", verify_admin_token, deleteProduct);
+route.patch("/delete/:id_product", verify_admin_token, deleteProduct);
 route.delete("/:id_product", verify_admin_token, hard_deleteProduct);
 route.get("/", getAllProducts);
 route.get("/:id_product", getProductByID);
