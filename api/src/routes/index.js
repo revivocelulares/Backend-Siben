@@ -12,6 +12,7 @@ const invoices = require('./invoice');
 const purchaseOrders = require('./purchaseOrders');
 const check = require('./checkmemberemail');
 const paymentresponse = require('./paymentresponse');
+const toods = require('./todosEllos');
 
 router.use('/users', users);
 router.use('/login', login);
@@ -26,5 +27,6 @@ router.use('/orders', purchaseOrders);
 router.use('/invoice', invoices);
 router.use('/checkmail', check);
 router.use('/paymentresponse', paymentresponse);
+router.use('/allBooks', toods);
 
 module.exports = router;
