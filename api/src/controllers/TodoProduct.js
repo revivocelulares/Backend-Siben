@@ -11,7 +11,6 @@ const allBooks = {
                     }
                 }]
             });
-            console.log(toodsBooks);
             res.status(200).json(toodsBooks);
         } catch (error) {
             console.log('Error: ' + error);
