@@ -11,7 +11,7 @@ const product = {
                 res.status(403).send({message:"Forbidden Access"});
             } else {
                 try {
-                    let { title, isbn, prolog, description, price_usd, price_ars, image, format, ebook_links, autores } = req.body;
+                    let { title, isbn, prolog, description, price_usd_nm, price_ars_nm, price_usd_m, price_ars_m, image, format, ebook_links, autores } = req.body;
                     let buff = fs.readFileSync(`./src/tapa-libros/${title}.jpg`);
                     image = buff.toString('base64');
                     let newProduct = await Product.create({
@@ -19,8 +19,10 @@ const product = {
                         isbn, 
                         prolog, 
                         description, 
-                        price_usd, 
-                        price_ars, 
+                        price_usd_nm, 
+                        price_ars_nm,
+                        price_usd_m, 
+                        price_ars_m, 
                         image, 
                         format,
                         ebook_links
@@ -178,10 +180,10 @@ const product = {
             });
             if (type === 'ASC') {
                 data.sort(function (a, b) {
-                    if (a.price_usd > b.price_usd) {
+                    if (a.price_usd_nm > b.price_usd_nm) {
                         return 1;
                     }
-                    if (a.price_usd < b.price_usd) {
+                    if (a.price_usd_nm < b.price_usd_nm) {
                         return -1;
                     }
                     return 0;
@@ -189,10 +191,10 @@ const product = {
                 return res.status(200).json(data);
             } else if (type === 'DESC') {
                 data.sort(function (a, b) {
-                    if (a.price_usd < b.price_usd) {
+                    if (a.price_usd_nm < b.price_usd_nm) {
                         return 1;
                     }
-                    if (a.price_usd > b.price_usd) {
+                    if (a.price_usd_nm > b.price_usd_nm) {
                         return -1;
                     }
                     return 0;

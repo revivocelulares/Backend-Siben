@@ -25,11 +25,19 @@ module.exports = (sequelize) => {
             type: DataTypes.TEXT('long'),
             allowNull: false,
         },
-        price_usd: {
+        price_usd_nm: {
             type: DataTypes.FLOAT(),
             allowNull: false,
         },
-        price_ars: {
+        price_ars_nm: {
+            type: DataTypes.FLOAT(),
+            allowNull: false,
+        },
+        price_usd_m: {
+            type: DataTypes.FLOAT(),
+            allowNull: false,
+        },
+        price_ars_m: {
             type: DataTypes.FLOAT(),
             allowNull: false,
         },
